@@ -24,10 +24,5 @@ namespace mzports
         {
             InitializeComponent();
         }
-
-        private void submit(int abc)
-        {
-            
-        }
     }
 }

@@ -4,13 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:mzports"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        >
-    <Grid Background="Gray">
-        <StackPanel>
-        
+        Title="mzports : Controllers / Modules adjutment..." Height="450" Width="800">
+    <Grid>
+        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Cpu32Bit" Width="125" Height="125"/>
+                <TextBlock Text="mzports..." VerticalAlignment="Center" FontSize="32"/>
+            </StackPanel>
+            <StackPanel>
+                <Button Content="START" Width="200" Height="48" Margin="0,20,0,0" FontSize="24"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"/>
+            </StackPanel>
         </StackPanel>
+        
 
     </Grid>
 </Window>
