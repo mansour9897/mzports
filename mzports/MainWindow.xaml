@@ -8,8 +8,6 @@
         mc:Ignorable="d"
         Title="mzports : Controllers / Modules adjutment..." Height="450" Width="800">
     <Grid>
-        <Frame Source="/Views/StartupPage.xaml"/>
-
-
+        <Frame Source="/Views/TCM.xaml"/>
     </Grid>
 </Window>
