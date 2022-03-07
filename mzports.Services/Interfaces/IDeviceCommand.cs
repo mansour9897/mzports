@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mzports.Services.Interfaces
+namespace mzports.Services
 {
-    public interface IDeviceCommand
+    interface IDeviceCommand
     {
         string CommandCode { get; }
         bool ExecuteConfirmed { get; set; }
