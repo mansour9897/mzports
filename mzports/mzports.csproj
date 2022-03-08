@@ -14,4 +14,8 @@
     <PackageReference Include="Syncfusion.Tools.WPF" Version="19.4.0.54" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\mzports.Services\mzports.Services.csproj" />
+  </ItemGroup>
+
 </Project>

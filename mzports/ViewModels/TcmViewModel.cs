@@ -9,5 +9,18 @@ namespace mzports.ViewModels
         {
 
         }
+
+        private string? deviceNamr;
+
+        public string? DeviceName
+        {
+            get => deviceNamr;
+            set
+            {
+                deviceNamr = value;
+                OnPropertyChanged();
+            }
+        }
+
     }
 }
