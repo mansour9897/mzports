@@ -12,7 +12,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="24"/>
+            <RowDefinition Height="28"/>
         </Grid.RowDefinitions>
         <StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -65,13 +65,22 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal"
-                    Background="{StaticResource SecondaryHueMidBrush }">
+                    Background="{StaticResource  MaterialDesignToolBackground }">
             <materialDesign:PackIcon Kind="Devices" 
                                      Height="24"
                                      Width="32"
-                                     Foreground="{StaticResource MaterialDesignDarkForeground}"/>
-            <TextBlock Foreground="{StaticResource MaterialDesignDarkForeground}"
-                Style="{StaticResource  MaterialDesignCaptionTextBlock}">Module Name</TextBlock>
+                                     />
+            <TextBlock Style="{StaticResource  MaterialDesignCaptionTextBlock}">TCM</TextBlock>
+
+                <ToggleButton Width="20" Height="20" Margin="20,0" Background="{StaticResource MaterialDesignToolBarBackground}"
+                              Style="{StaticResource MaterialDesignActionToggleButton}"
+                    ToolTip="MaterialDesignActionLightToggleButton"
+                    Content="{materialDesign:PackIcon Kind=UsbPort, Size=15}"
+                    materialDesign:ToggleButtonAssist.OnContent="{materialDesign:PackIcon Kind=Close,Size=15}"/>
+            <ComboBox Foreground="{StaticResource  PrimaryHueMidForegroundBrush}" 
+                      materialDesign:HintAssist.Hint="Select port" 
+                      ItemsSource="{Binding PortNames}">
+            </ComboBox>
         </StackPanel>
     </Grid>
     
