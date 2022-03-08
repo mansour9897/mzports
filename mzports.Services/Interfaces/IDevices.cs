@@ -1,7 +1,7 @@
 ﻿namespace mzports.Services
 {
-    interface IDevices
+    public interface IDevices
     {
-
+        bool SelfCheck();
     }
 }
