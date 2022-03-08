@@ -7,15 +7,69 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="StartupPage">
+    <Page.Resources>
+        <Storyboard x:Key="Storyboard1">
 
-    <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" >
-        <StackPanel Orientation="Horizontal">
-            <materialDesign:PackIcon Kind="Cpu32Bit" Width="125" Height="125"/>
-            <TextBlock Text="mzports..." VerticalAlignment="Center" FontSize="32"/>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="-100"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2250000" Value="-100"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="packIcon" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="packIcon" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="packIcon" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="360"/>
+            </DoubleAnimationUsingKeyFrames>
+
+        </Storyboard>
+    </Page.Resources>
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Page.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
+        </EventTrigger>
+    </Page.Triggers>
+    <Grid>
+        <StackPanel x:Name="stackPanel" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top">
+            <materialDesign:PackIcon x:Name="packIcon" Kind="Cpu32Bit" Width="125" Height="125" RenderTransformOrigin="0.5,0.5">
+                <materialDesign:PackIcon.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </materialDesign:PackIcon.RenderTransform>
+            </materialDesign:PackIcon>
+            <TextBlock x:Name="textBlock" Text="mzports..." VerticalAlignment="Center" FontSize="32" RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+
+            </TextBlock>
         </StackPanel>
+    </Grid>
+
+    <!--<StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" >
+        
         <StackPanel  HorizontalAlignment="Center" >
             <Button Content="START" Width="200" Height="48" Margin="0,20,0,0" FontSize="24"
                         Style="{StaticResource MaterialDesignRaisedDarkButton}"/>
         </StackPanel>
-    </StackPanel>
+    </StackPanel>-->
 </Page>

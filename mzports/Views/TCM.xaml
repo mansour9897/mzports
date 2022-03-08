@@ -8,54 +8,70 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Background="White"
       Title="TCM">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="24"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Temperature" Width="48" Height="48" VerticalAlignment="Center" Foreground="OrangeRed"/>
+                <TextBlock Text="Temperature" Style="{StaticResource MaterialDesignHeadline4TextBlock}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <materialDesign:PackIcon Kind="Input" Width="48" Height="28" VerticalAlignment="Center" Foreground="Gray"/>
+                <TextBlock Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Padding="5,2">Input Type :</TextBlock>
+                <ComboBox Style="{StaticResource MaterialDesignComboBox}" SelectedIndex="0" >
+                    <ComboBoxItem Content="Transmitter 4 ~ 20 mA">
+                    </ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Margin="0,10" Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="TemperatureCentigrade" Width="48" Height="28" VerticalAlignment="Top" Foreground="Gray"/>
+                <Grid Margin="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Padding="0" 
+                           Style="{StaticResource MaterialDesignSubtitle2TextBlock}" >Range</TextBlock>
 
-    <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <materialDesign:PackIcon Kind="Temperature" Width="48" Height="48" VerticalAlignment="Center" Foreground="OrangeRed"/>
-            <TextBlock Text="Temperature" Style="{StaticResource MaterialDesignHeadline4TextBlock}"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,10">
-            <materialDesign:PackIcon Kind="Input" Width="48" Height="28" VerticalAlignment="Center" Foreground="Gray"/>
-            <TextBlock Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Padding="5,2">Input Type : </TextBlock>
-            <ComboBox Style="{StaticResource MaterialDesignComboBox}" SelectedIndex="0" >
-                <ComboBoxItem Content="Transmitter 4 ~ 20 mA">
-                </ComboBoxItem>
-            </ComboBox>
-        </StackPanel>
-        <StackPanel Margin="0,10" Orientation="Horizontal">
-            <materialDesign:PackIcon Kind="TemperatureCentigrade" Width="48" Height="28" VerticalAlignment="Top" Foreground="Gray"/>
-            <Grid Margin="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" Padding="0" 
-                           Style="{StaticResource MaterialDesignSubtitle2TextBlock}" >Range </TextBlock>
-                
-                <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                    <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignCaptionTextBlock}"
                            Grid.Row="1" Grid.Column="0">From :</TextBlock>
-                <syncfusion:DoubleTextBox Style="{StaticResource MaterialDesignTextBox}" 
+                    <syncfusion:DoubleTextBox Style="{StaticResource MaterialDesignTextBox}" 
                                           Grid.Row="1" Grid.Column="1"
                                           Margin="5,0" Width="65"/>
 
-                <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                    <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignCaptionTextBlock}"
                            Grid.Row="2">To :</TextBlock>
-                <syncfusion:DoubleTextBox Style="{StaticResource MaterialDesignTextBox}" Margin="5,0" Width="65"
+                    <syncfusion:DoubleTextBox Style="{StaticResource MaterialDesignTextBox}" Margin="5,0" Width="65"
                                           Grid.Row="2" Grid.Column="1"/>
-                <Button Grid.Row="3" Grid.Column="2" Margin="15">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Apply"/>
-                    </StackPanel>
-                </Button>
-            </Grid>
-            
+                    <Button Grid.Row="3" Grid.Column="2" Margin="15">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Apply"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+            </StackPanel>
+
         </StackPanel>
-        
-    </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal"
+                    Background="{StaticResource SecondaryHueMidBrush }">
+            <materialDesign:PackIcon Kind="Devices" 
+                                     Height="24"
+                                     Width="32"
+                                     Foreground="{StaticResource MaterialDesignDarkForeground}"/>
+            <TextBlock Foreground="{StaticResource MaterialDesignDarkForeground}"
+                Style="{StaticResource  MaterialDesignCaptionTextBlock}">Module Name</TextBlock>
+        </StackPanel>
+    </Grid>
+    
 </Page>
