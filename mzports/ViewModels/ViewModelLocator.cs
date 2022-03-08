@@ -4,6 +4,6 @@ namespace mzports.ViewModels
 {
     public class ViewModelLocator
     {
-        public static TcmViewModel TcmViewModel => App.ServiceProvider.GetRequiredService<TcmViewModel>();
+        public TcmViewModel TcmViewModel => App.ServiceProvider.GetRequiredService<TcmViewModel>();
     }
 }

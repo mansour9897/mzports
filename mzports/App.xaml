@@ -1,11 +1,14 @@
 ﻿<Application x:Class="mzports.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:mzports"
+             xmlns:local="clr-namespace:mzports" 
+             xmlns:vm="clr-namespace:mzports.ViewModels"
              StartupUri="MainWindow.xaml"
              Startup="Application_Startup">
     <Application.Resources>
-         <ResourceDictionary>
+        <ResourceDictionary>
+            <vm:ViewModelLocator x:Key="ViewModelLocator"/>
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
