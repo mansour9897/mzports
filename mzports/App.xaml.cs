@@ -9,8 +9,8 @@ namespace mzports
     /// </summary>
     public partial class App : Application
     {
-        private static ServiceProvider? serviceProvider;
-        public static ServiceProvider? Service
+        private static ServiceProvider serviceProvider;
+        public static ServiceProvider ServiceProvider
         {
             get => serviceProvider;
             set
@@ -28,6 +28,9 @@ namespace mzports
         {
             //Serices
             _ = services.AddScoped<TemperatureControllerModule>();
+
+            //ViewModels
+            _ = services.AddTransient<ViewModels.TcmViewModel>();
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
