@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Communications;
 using Microsoft.Extensions.DependencyInjection;
 using mzports.Services.TCM;
 
@@ -28,6 +29,9 @@ namespace mzports
         {
             //Serices
             _ = services.AddScoped<TemperatureControllerModule>();
+
+            //Communication 
+            services.AddSingleton<ICommunication, SerialComminucation>();
 
             //ViewModels
             _ = services.AddTransient<ViewModels.TcmViewModel>();

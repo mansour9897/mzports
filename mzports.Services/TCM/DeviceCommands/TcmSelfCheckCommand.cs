@@ -2,7 +2,7 @@
 
 namespace mzports.Services.TCM.DeviceCommands
 {
-    class TcmSelfCheckCommand : DeviceCommand, ITcmSelfCheckCommand
+    class TcmSelfCheckCommand : DeviceCommand
     {
         private const string code = "#0000\r";
         private const string confirm = "!0000";
