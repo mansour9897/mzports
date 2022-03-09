@@ -24,7 +24,7 @@ namespace mzports.ViewModels
             _ = Task.Run(() => GetDevieNameAsync());
             PortNames = new ObservableCollection<string>();
             string[]? ports = SerialPort.GetPortNames();
-            
+
             foreach (var item in ports)
             {
                 PortNames.Add(item);
@@ -35,6 +35,18 @@ namespace mzports.ViewModels
                 9600,
                 115200
             };
+        }
+
+        private bool portIsConnected;
+
+        public bool PortIsConnected
+        {
+            get { return portIsConnected; }
+            set
+            {
+                portIsConnected = value;
+                OnPropertyChanged();
+            }
         }
 
         private string selectedPort;
@@ -55,7 +67,7 @@ namespace mzports.ViewModels
         public int SelectedBuadrate
         {
             get { return selectedBuadrate; }
-            set 
+            set
             {
                 selectedBuadrate = value;
                 _com.ChangeSetting(GetSerialSetting());
@@ -107,11 +119,21 @@ namespace mzports.ViewModels
         {
             if (selectedPort is null)
             {
-                _ = MessageBox.Show("Select COM port, please!","Error", MessageBoxButton.OK,MessageBoxImage.Error);
+                _ = MessageBox.Show("Select COM port, please!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            _tcm.SelfCheck();
+            if (portIsConnected)
+            {
+               if(!( _com.Connect()))
+                {
+                    PortIsConnected = false;
+                }
+            }
+            else
+            {
+                //Disconnect
+            }
         }
         #endregion
 

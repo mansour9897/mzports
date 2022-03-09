@@ -74,7 +74,8 @@
             <TextBlock Margin="20,0" Style="{StaticResource  MaterialDesignCaptionTextBlock}">Not connected</TextBlock>
 
             <ToggleButton Width="20" Height="20" Margin="20,0" Background="{StaticResource MaterialDesignToolBarBackground}"
-                          Command="{Binding PortConnectCommand}"    
+                          Command="{Binding PortConnectCommand}"   
+                          IsChecked="{Binding PortIsConnected,UpdateSourceTrigger=PropertyChanged}"
                           Style="{StaticResource MaterialDesignActionToggleButton}"
                     ToolTip="MaterialDesignActionLightToggleButton"
                     Content="{materialDesign:PackIcon Kind=UsbPort, Size=15}"
