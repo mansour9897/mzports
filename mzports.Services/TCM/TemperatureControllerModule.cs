@@ -11,13 +11,13 @@ namespace mzports.Services.TCM
         public TemperatureControllerModule(ICommunication com)
         {
             _com = com;
-            _com.MessageReceived += com_MessageReceived;
+            _com.MessageReceived += Com_MessageReceived;
             _tcmSelfCheckCommand = new TcmSelfCheckCommand(_com);
             //_tcmRequestDeviceNameCommand = new TcmSelfCheckCommand(_com);
 
         }
 
-        private void com_MessageReceived(object sender, string message)
+        private void Com_MessageReceived(object sender, string message)
         {
             if (!(message.IndexOf(_tcmSelfCheckCommand.ConfirmationCode) < 0))
             {

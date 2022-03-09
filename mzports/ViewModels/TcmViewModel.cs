@@ -35,6 +35,12 @@ namespace mzports.ViewModels
             set
             {
                 selectedPort = value;
+                SerialSetting st = new SerialSetting()
+                {
+                    PortName = selectedPort,
+                    Baudrate = 9600
+                };
+                _com.ChangeSetting(st);
                 OnPropertyChanged();
             }
         }

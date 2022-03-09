@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mzports", "mzports\mzports.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Communications", "Communications\Communications\Communications.csproj", "{D91B075F-00A7-4C14-A858-11FC499A6473}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mzports.Services", "mzports.Services\mzports.Services.csproj", "{A8BCECFB-6E98-4596-8055-F17C8F14B3CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mzports.Services", "mzports.Services\mzports.Services.csproj", "{A8BCECFB-6E98-4596-8055-F17C8F14B3CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BC89E8D2-56F0-469C-B356-0645B347F4D6}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
