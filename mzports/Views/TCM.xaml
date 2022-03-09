@@ -85,6 +85,13 @@
                       ItemsSource="{Binding PortNames}"
                       SelectedItem="{Binding SelectedPort, UpdateSourceTrigger=PropertyChanged}">
             </ComboBox>
+            <ComboBox Foreground="{StaticResource  PrimaryHueMidForegroundBrush}" 
+                      materialDesign:HintAssist.Hint="Select port" 
+                      Width="80"
+                      Margin="25,0"
+                      ItemsSource="{Binding Buadrates}"
+                      SelectedItem="{Binding SelectedBuadrate, UpdateSourceTrigger=PropertyChanged}">
+            </ComboBox>
         </StackPanel>
     </Grid>
     

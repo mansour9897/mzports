@@ -14,17 +14,27 @@ namespace mzports.ViewModels
         private readonly ICommunication _com;
 
         public ObservableCollection<string> PortNames { get; private set; }
+        public ObservableCollection<int> Buadrates { get; private set; }
+
+
         public TcmViewModel(TemperatureControllerModule tcm, ICommunication com)
         {
             _tcm = tcm;
             _com = com;
             _ = Task.Run(() => GetDevieNameAsync());
             PortNames = new ObservableCollection<string>();
-            var ports = SerialPort.GetPortNames();
+            string[]? ports = SerialPort.GetPortNames();
+            
             foreach (var item in ports)
             {
                 PortNames.Add(item);
             }
+
+            Buadrates = new ObservableCollection<int>
+            {
+                9600,
+                115200
+            };
         }
 
         private string selectedPort;
@@ -35,12 +45,20 @@ namespace mzports.ViewModels
             set
             {
                 selectedPort = value;
-                SerialSetting st = new SerialSetting()
-                {
-                    PortName = selectedPort,
-                    Baudrate = 9600
-                };
-                _com.ChangeSetting(st);
+                _com.ChangeSetting(GetSerialSetting());
+                OnPropertyChanged();
+            }
+        }
+
+        private int selectedBuadrate;
+
+        public int SelectedBuadrate
+        {
+            get { return selectedBuadrate; }
+            set 
+            {
+                selectedBuadrate = value;
+                _com.ChangeSetting(GetSerialSetting());
                 OnPropertyChanged();
             }
         }
@@ -63,6 +81,19 @@ namespace mzports.ViewModels
             _tcm.SelfCheck();
             await Task.Delay(1);
         }
+
+        #region Methods
+        private SerialSetting GetSerialSetting()
+        {
+            SerialSetting st = new SerialSetting()
+            {
+                PortName = selectedPort,
+                Baudrate = selectedBuadrate
+            };
+            return st;
+
+        }
+        #endregion
 
         #region commands
         public ICommand RangeApplyCommand => new Commands.RelayCommand(() => RangeApply());
