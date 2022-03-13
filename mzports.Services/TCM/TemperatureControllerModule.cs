@@ -1,5 +1,6 @@
 ﻿using Communications;
 using mzports.Services.TCM.DeviceCommands;
+using System.Threading.Tasks;
 
 namespace mzports.Services.TCM
 {
@@ -25,9 +26,10 @@ namespace mzports.Services.TCM
             }
         }
 
-        public bool SelfCheck()
+        public async Task<bool> SelfCheck()
         {
             _tcmSelfCheckCommand.Execute();
+            await Task.Delay(1);
             return _tcmSelfCheckCommand.ExecuteConfirmed;
         }
 

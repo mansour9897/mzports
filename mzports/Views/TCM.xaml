@@ -71,7 +71,8 @@
                                      Width="32"
                                      />
             <TextBlock Style="{StaticResource  MaterialDesignCaptionTextBlock}">TCM</TextBlock>
-            <TextBlock Margin="20,0" Style="{StaticResource  MaterialDesignCaptionTextBlock}">Not connected</TextBlock>
+            <TextBlock Margin="20,0" Style="{StaticResource  MaterialDesignCaptionTextBlock}"
+                       Text="{Binding DeviceIsConnected}"></TextBlock>
 
             <ToggleButton Width="20" Height="20" Margin="20,0" Background="{StaticResource MaterialDesignToolBarBackground}"
                           Command="{Binding PortConnectCommand}"   

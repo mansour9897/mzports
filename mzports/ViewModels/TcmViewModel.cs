@@ -5,6 +5,7 @@ using System.IO.Ports;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace mzports.ViewModels
 {
@@ -35,6 +36,37 @@ namespace mzports.ViewModels
                 9600,
                 115200
             };
+
+            DispatcherTimer timer = new();
+            timer.Interval = new System.TimeSpan(0, 0, 5);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private async void Timer_Tick(object? sender, System.EventArgs e)
+        {
+            bool res = await _tcm.SelfCheck();
+
+            if (res)
+            {
+                DeviceIsConnected = "Connected";
+            }
+            else
+            {
+                DeviceIsConnected = "Disconnected";
+            }
+        }
+
+        private string deviceIsConnected;
+
+        public string DeviceIsConnected
+        {
+            get => deviceIsConnected;
+            set
+            {
+                deviceIsConnected = value;
+                OnPropertyChanged();
+            }
         }
 
         private bool portIsConnected;
@@ -105,6 +137,7 @@ namespace mzports.ViewModels
             return st;
 
         }
+
         #endregion
 
         #region commands
@@ -125,7 +158,7 @@ namespace mzports.ViewModels
 
             if (portIsConnected)
             {
-               if(!( _com.Connect()))
+                if (!(_com.Connect()))
                 {
                     PortIsConnected = false;
                 }

@@ -1,7 +1,9 @@
-﻿namespace mzports.Services
+﻿using System.Threading.Tasks;
+
+namespace mzports.Services
 {
     public interface IDevices
     {
-        bool SelfCheck();
+        Task<bool> SelfCheck();
     }
 }
