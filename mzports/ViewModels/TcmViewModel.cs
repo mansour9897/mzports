@@ -47,14 +47,7 @@ namespace mzports.ViewModels
         {
             bool res = await _tcm.SelfCheck();
 
-            if (res)
-            {
-                DeviceIsConnected = "Connected";
-            }
-            else
-            {
-                DeviceIsConnected = "Disconnected";
-            }
+            DeviceIsConnected = res ? "Connected" : "Disconnected";
         }
 
         private string deviceIsConnected;
@@ -108,14 +101,14 @@ namespace mzports.ViewModels
         }
 
 
-        private string? deviceNamr;
+        private string? deviceName;
 
         public string? DeviceName
         {
-            get => deviceNamr;
+            get => deviceName;
             set
             {
-                deviceNamr = value;
+                deviceName = value;
                 OnPropertyChanged();
             }
         }
