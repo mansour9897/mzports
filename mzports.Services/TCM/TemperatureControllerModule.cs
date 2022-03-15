@@ -1,5 +1,6 @@
 ﻿using Communications;
 using mzports.Services.TCM.DeviceCommands;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace mzports.Services.TCM
@@ -8,21 +9,40 @@ namespace mzports.Services.TCM
     {
         private readonly ICommunication _com;
         private readonly IDeviceCommand _tcmSelfCheckCommand;
-        //private readonly IDeviceCommand _tcmRequestDeviceNameCommand;
+
+        private IDeviceCommand _setTransmitterMinCmd;
+        private IDeviceCommand _setTransmitterMaxCmd;
+
+        private List<IDeviceCommand> commands;
+        
         public TemperatureControllerModule(ICommunication com)
         {
             _com = com;
             _com.MessageReceived += Com_MessageReceived;
             _tcmSelfCheckCommand = new TcmSelfCheckCommand(_com);
-            //_tcmRequestDeviceNameCommand = new TcmSelfCheckCommand(_com);
 
+            commands = new List<IDeviceCommand>()
+            {
+                _tcmSelfCheckCommand,
+                _setTransmitterMinCmd,
+                _setTransmitterMaxCmd
+            };
         }
 
         private void Com_MessageReceived(object sender, string message)
         {
-            if (!(message.IndexOf(_tcmSelfCheckCommand.ConfirmationCode) < 0))
+            //if (!(message.IndexOf(_tcmSelfCheckCommand.ConfirmationCode) < 0))
+            //{
+            //    _tcmSelfCheckCommand.ExecuteConfirmed = true;
+            //}
+            foreach (var cmd in commands)
             {
-                _tcmSelfCheckCommand.ExecuteConfirmed = true;
+                if (cmd is null) continue;
+
+                if(!(message.IndexOf(cmd.ConfirmationCode)<0))
+                {
+                    cmd.ExecuteConfirmed = true;
+                }
             }
         }
 
@@ -33,6 +53,17 @@ namespace mzports.Services.TCM
             return _tcmSelfCheckCommand.ExecuteConfirmed;
         }
 
+        public void SetTransmitterMin(double setValue)
+        {
+            _setTransmitterMinCmd = new SetTransmitterMinCommand(setValue, _com);
+            _setTransmitterMinCmd.Execute();
+        }
+
+        public void SetTransmitterMax(double setValue)
+        {
+            _setTransmitterMaxCmd = new SetTransmitterMaxCommand(setValue, _com);
+            _setTransmitterMaxCmd.Execute();
+        }
 
     }
 }

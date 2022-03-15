@@ -6,7 +6,7 @@ namespace mzports.Services.TCM.DeviceCommands
     {
         private const string opcode = "?11";
         private const string confirm = "!11";
-        public SetTransmitterMinCommand(double setVal, ICommunication com) : base(opcode,confirm,setVal, com)
+        public SetTransmitterMinCommand(double setVal, ICommunication com) : base(opcode, confirm, setVal, com)
         {
         }
 

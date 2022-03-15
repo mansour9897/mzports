@@ -1,6 +1,6 @@
 ﻿using Communications;
 
-namespace mzports.Services.Implementation
+namespace mzports.Services
 {
     class SetValueCommand : DeviceCommand
     {
