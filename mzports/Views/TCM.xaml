@@ -1,0 +1,102 @@
+﻿<Page x:Class="mzports.Views.TCM"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:mzports.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Background="White"
+      Title="TCM"
+      DataContext="{Binding TcmViewModel, Source={StaticResource ViewModelLocator}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="28"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Temperature" Width="48" Height="48" VerticalAlignment="Center" Foreground="OrangeRed"/>
+                <TextBlock Text="Temperature" Style="{StaticResource MaterialDesignHeadline4TextBlock}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <materialDesign:PackIcon Kind="Input" Width="48" Height="28" VerticalAlignment="Center" Foreground="Gray"/>
+                <TextBlock Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Padding="5,2">Input Type :</TextBlock>
+                <ComboBox Style="{StaticResource MaterialDesignComboBox}" SelectedIndex="0" >
+                    <ComboBoxItem Content="Transmitter 4 ~ 20 mA">
+                    </ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Margin="0,10" Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="TemperatureCentigrade" Width="48" Height="28" VerticalAlignment="Top" Foreground="Gray"/>
+                <Grid Margin="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Padding="0" 
+                           Style="{StaticResource MaterialDesignSubtitle2TextBlock}" >Range</TextBlock>
+
+                    <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                           Grid.Row="1" Grid.Column="0">From :</TextBlock>
+                    <syncfusion:DoubleTextBox Style="{StaticResource MaterialDesignTextBox}" 
+                                              Grid.Row="1" Grid.Column="1"
+                                              Margin="5,0" Width="65"
+                                              Value="{Binding RangeFrom,UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                           Grid.Row="2">To :</TextBlock>
+                    <syncfusion:DoubleTextBox Style="{StaticResource MaterialDesignTextBox}" Margin="5,0" Width="65"
+                                              Grid.Row="2" Grid.Column="1"
+                                              Value="{Binding RangeTo,UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Grid.Row="3" Grid.Column="2" Margin="15" Command="{Binding RangeApplyCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Apply"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal"
+                    Background="{StaticResource  MaterialDesignToolBackground }">
+            <materialDesign:PackIcon Kind="Devices" 
+                                     Height="24"
+                                     Width="32"
+                                     />
+            <TextBlock Style="{StaticResource  MaterialDesignCaptionTextBlock}">TCM</TextBlock>
+            <TextBlock Margin="20,0" Style="{StaticResource  MaterialDesignCaptionTextBlock}"
+                       Text="{Binding DeviceIsConnected}"></TextBlock>
+
+            <ToggleButton Width="20" Height="20" Margin="20,0" Background="{StaticResource MaterialDesignToolBarBackground}"
+                          Command="{Binding PortConnectCommand}"   
+                          IsChecked="{Binding PortIsConnected,UpdateSourceTrigger=PropertyChanged}"
+                          Style="{StaticResource MaterialDesignActionToggleButton}"
+                    ToolTip="MaterialDesignActionLightToggleButton"
+                    Content="{materialDesign:PackIcon Kind=UsbPort, Size=15}"
+                    materialDesign:ToggleButtonAssist.OnContent="{materialDesign:PackIcon Kind=Close,Size=15}"/>
+            <ComboBox Foreground="{StaticResource  PrimaryHueMidForegroundBrush}" 
+                      materialDesign:HintAssist.Hint="Select port" 
+                      Width="80"
+                      ItemsSource="{Binding PortNames}"
+                      SelectedItem="{Binding SelectedPort, UpdateSourceTrigger=PropertyChanged}">
+            </ComboBox>
+            <ComboBox Foreground="{StaticResource  PrimaryHueMidForegroundBrush}" 
+                      materialDesign:HintAssist.Hint="Select port" 
+                      Width="80"
+                      Margin="25,0"
+                      ItemsSource="{Binding Buadrates}"
+                      SelectedItem="{Binding SelectedBuadrate, UpdateSourceTrigger=PropertyChanged}">
+            </ComboBox>
+        </StackPanel>
+    </Grid>
+    
+</Page>
