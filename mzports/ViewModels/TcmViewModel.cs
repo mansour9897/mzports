@@ -11,12 +11,13 @@ namespace mzports.ViewModels
 {
     public class TcmViewModel : ViewModelBase
     {
+        #region variables
         private readonly TemperatureControllerModule _tcm;
         private readonly ICommunication _com;
 
         public ObservableCollection<string> PortNames { get; private set; }
         public ObservableCollection<int> Buadrates { get; private set; }
-
+        #endregion
 
         public TcmViewModel(TemperatureControllerModule tcm, ICommunication com)
         {
@@ -43,13 +44,7 @@ namespace mzports.ViewModels
             timer.Start();
         }
 
-        private async void Timer_Tick(object? sender, System.EventArgs e)
-        {
-            bool res = await _tcm.SelfCheck();
-
-            DeviceIsConnected = res ? "Connected" : "Disconnected";
-        }
-
+        #region Properties
         private string deviceIsConnected;
 
         public string DeviceIsConnected
@@ -113,13 +108,43 @@ namespace mzports.ViewModels
             }
         }
 
-        private async void GetDevieNameAsync()
+        private double rangeFrom;
+
+        public double RangeFrom
         {
-            _tcm.SelfCheck();
-            await Task.Delay(1);
+            get => rangeFrom;
+            set
+            {
+                rangeFrom = value;
+                OnPropertyChanged();
+            }
         }
 
+        private double rangeTo;
+
+        public double RangeTo
+        {
+            get => rangeTo;
+            set
+            {
+                rangeTo = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
         #region Methods
+        private async void Timer_Tick(object? sender, System.EventArgs e)
+        {
+            bool res = await _tcm.SelfCheck();
+
+            DeviceIsConnected = res ? "Connected" : "Disconnected";
+        }
+        private async void GetDevieNameAsync()
+        {
+            await _tcm.SelfCheck();
+        }
         private SerialSetting GetSerialSetting()
         {
             SerialSetting st = new SerialSetting()
@@ -130,14 +155,14 @@ namespace mzports.ViewModels
             return st;
 
         }
-
         #endregion
 
         #region commands
         public ICommand RangeApplyCommand => new Commands.RelayCommand(() => RangeApply());
         private void RangeApply()
         {
-
+            _tcm.SetTransmitterMin(rangeFrom);
+            _tcm.SetTransmitterMax(rangeTo);
         }
 
         public ICommand PortConnectCommand => new Commands.RelayCommand(() => PortConect());

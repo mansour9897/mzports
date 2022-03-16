@@ -15,7 +15,16 @@ namespace mzports.Services
         {
             _com = com;
             _commandCode = code;
-            _confirmationCode = code;
+            _confirmationCode = confirmCode;
+            _com.MessageReceived += _com_MessageReceived;
+        }
+
+        private void _com_MessageReceived(object sender, string message)
+        {
+            if (!(message.IndexOf(ConfirmationCode) < 0))
+            {
+                ExecuteConfirmed = true;
+            }
         }
 
         public DeviceCommand(string code, ICommunication com)

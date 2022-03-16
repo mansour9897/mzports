@@ -46,14 +46,16 @@
                     <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignCaptionTextBlock}"
                            Grid.Row="1" Grid.Column="0">From :</TextBlock>
                     <syncfusion:DoubleTextBox Style="{StaticResource MaterialDesignTextBox}" 
-                                          Grid.Row="1" Grid.Column="1"
-                                          Margin="5,0" Width="65"/>
+                                              Grid.Row="1" Grid.Column="1"
+                                              Margin="5,0" Width="65"
+                                              Value="{Binding RangeFrom,UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock VerticalAlignment="Center" Style="{StaticResource MaterialDesignCaptionTextBlock}"
                            Grid.Row="2">To :</TextBlock>
                     <syncfusion:DoubleTextBox Style="{StaticResource MaterialDesignTextBox}" Margin="5,0" Width="65"
-                                          Grid.Row="2" Grid.Column="1"/>
-                    <Button Grid.Row="3" Grid.Column="2" Margin="15">
+                                              Grid.Row="2" Grid.Column="1"
+                                              Value="{Binding RangeTo,UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Grid.Row="3" Grid.Column="2" Margin="15" Command="{Binding RangeApplyCommand}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Apply"/>
                         </StackPanel>
